@@ -1,0 +1,23 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+
+remappings = [
+  "chainlink/=lib/chainlink/contracts/",
+  "forge-std/=lib/forge-std/src/",
+  "@solmate/=lib/solmate/src/",
+  "@openzeppelin/=lib/openzeppelin-contracts/"
+]
+fs_permissions = [
+  { access = "read", path = "./broadcast" },
+  { access = "read", path = "./reports" },
+]
+
+[fuzz]
+runs = 256
+
+[rpc_endpoints]
+sepolia = "https://eth-sepolia.g.alchemy.com/v2/bPs3Vm10ZDPocw_EVPb9SpBbY_EyX-5H"
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
