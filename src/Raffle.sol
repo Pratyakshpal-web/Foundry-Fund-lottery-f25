@@ -101,7 +101,7 @@ contract Raffle is VRFConsumerBaseV2Plus, AutomationCompatibleInterface {
             keyHash: i_gasLane,
             subId: i_subscriptionId,
             requestConfirmations: REQUEST_CONFIRMATIONS,
-            callbackGasLimit: i_callbackGasLimit,
+            callbackGasLimit: i_callbackGasLimit, 
             numWords: NUM_WORDS,
             // Set nativePayment to true to pay for VRF requests with Sepolia ETH instead of LINK
             extraArgs: VRFV2PlusClient._argsToBytes(VRFV2PlusClient.ExtraArgsV1({nativePayment: false}))
@@ -109,7 +109,7 @@ contract Raffle is VRFConsumerBaseV2Plus, AutomationCompatibleInterface {
         emit RequestedRaffleWinner(requestId);
     }
 
-    function fulfillRandomWords(uint256 requestId, uint256[] calldata randomWords) internal override {
+    function fulfillRandomWords(uint256 /*requestId*/, uint256[] calldata randomWords) internal override {
         uint256 indexOfWinner = randomWords[0] % s_players.length;
         address payable addressOfWinner = s_players[indexOfWinner];
         s_recentWinner = addressOfWinner;
